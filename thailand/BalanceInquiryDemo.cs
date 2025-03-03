@@ -1,52 +1,28 @@
-﻿
-using System.Text;
+﻿using System.Text;
+using thailand.bean;
+namespace thailand;
 
-using india.bean;
-namespace india;
-
-
-public class PayInRequestDemo
+public class BalanceInquiryDemo
 {
-    public static async Task PayInDemo(string env, string merchantId, string merchantSecret, string privateKey,
-        string paymentMethod, int amount, string email)
+     public static async Task InquiryDemo(string env,string merchantId,string merchantSecret,string privateKey,string accountNo)
     {
         // sandbox 
-        string requestPath = Constant.baseUrlSanbox + "/v2.0/transaction/pay-in";
+        string requestPath =Constant.baseUrlSanbox + "/v2.0/inquiry-balance";
         if (env.Equals("production"))
         {
-            requestPath = Constant.baseUrl + "/v2.0/transaction/pay-in";
+            requestPath =Constant.baseUrl + "/v2.0/inquiry-balance";
         }
-
-
+        
         DateTime date = DateTime.Now;
         string timestamp = date.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
         Console.WriteLine("timestamp:" + timestamp);
 
-        string orderNo = merchantId.Replace("sandbox-", "S") + Guid.NewGuid().ToString("N");
-
-        MoneyRequest moneyRequest = new MoneyRequest();
-        moneyRequest.amount = amount;
-        moneyRequest.currency = CurrencyEnum.INR.ToString();
-
-        PayerRequest payer = new PayerRequest();
-        payer.email = email;
-
-        MerchantRequest merchantRequest = new MerchantRequest();
-        merchantRequest.merchantId = merchantId;
-
-        PayInRequest payInRequest = new PayInRequest();
-        payInRequest.merchant = merchantRequest;
-        payInRequest.money = moneyRequest;
-        payInRequest.paymentMethod = paymentMethod;
-        payInRequest.area = AreaEnum.INDIA.Code;
-        payInRequest.purpose = "for test";
-        payInRequest.payer = payer;
-        payInRequest.orderNo = orderNo.Substring(0, 32);
-
-        Console.WriteLine("request path:" + requestPath);
-
-        // minifi data
-        string minify = Newtonsoft.Json.JsonConvert.SerializeObject(payInRequest);
+        BalanceInquiryRequest balanceInquiryRequest = new BalanceInquiryRequest();
+        balanceInquiryRequest.accountNo = accountNo;
+        balanceInquiryRequest.balanceTypes = ["BALANCE"];
+        
+        // minify data
+        string  minify = Newtonsoft.Json.JsonConvert.SerializeObject(balanceInquiryRequest);
         Console.WriteLine("minify:" + minify);
 
         string signContent = $"{timestamp}|{merchantSecret}|{minify}";
@@ -54,7 +30,7 @@ public class PayInRequestDemo
         var signature = SignatureUtils.sha256RsaSignature(signContent, privateKey);
         using (HttpClient client = new HttpClient())
         {
-            // request headers
+            // request headers 
             client.DefaultRequestHeaders.Add("ContentType", "application/json");
             client.DefaultRequestHeaders.Add("X-TIMESTAMP", timestamp);
             client.DefaultRequestHeaders.Add("X-SIGNATURE", signature);
@@ -62,12 +38,13 @@ public class PayInRequestDemo
             StringContent content = new StringContent(minify, Encoding.UTF8, "application/json");
 
             Console.WriteLine("content:" + Newtonsoft.Json.JsonConvert.SerializeObject(content));
+            Console.WriteLine("requestPath:" + requestPath);
 
-            // post request 
+            // send request 
             HttpResponseMessage response =
                 await client.PostAsync(requestPath, content);
 
-            //  is success code ?
+            // is success ? 
             if (response.IsSuccessStatusCode)
             {
                 // read response body 
@@ -77,7 +54,6 @@ public class PayInRequestDemo
             }
             else
             {
-                // read response body 
                 string responseBody = await response.Content.ReadAsStringAsync();
                 Console.WriteLine("Response Body:");
                 Console.WriteLine(responseBody);

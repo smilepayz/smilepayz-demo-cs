@@ -1,60 +1,54 @@
-﻿
-using System.Text;
+﻿using System.Text;
+using mexico.bean;
 
-using india.bean;
-namespace india;
+namespace mexico;
 
-
-public class PayInRequestDemo
+public class PayOutRequestDemo
 {
-    public static async Task PayInDemo(string env, string merchantId, string merchantSecret, string privateKey,
-        string paymentMethod, int amount, string email)
+    public static async Task PayOutDemo(string env, string merchantId, string merchantSecret, string privateKey,
+        string paymentMethod, string cashAccount, int amount)
     {
         // sandbox 
-        string requestPath = Constant.baseUrlSanbox + "/v2.0/transaction/pay-in";
+        string requestPath = Constant.baseUrlSanbox + "/v2.0/disbursement/pay-out";
         if (env.Equals("production"))
         {
-            requestPath = Constant.baseUrl + "/v2.0/transaction/pay-in";
+            requestPath = Constant.baseUrl + "/v2.0/disbursement/pay-out";
         }
 
+        string orderNo = merchantId.Replace("sandbox-", "S") + Guid.NewGuid().ToString("N");
 
         DateTime date = DateTime.Now;
         string timestamp = date.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
         Console.WriteLine("timestamp:" + timestamp);
 
-        string orderNo = merchantId.Replace("sandbox-", "S") + Guid.NewGuid().ToString("N");
-
         MoneyRequest moneyRequest = new MoneyRequest();
         moneyRequest.amount = amount;
-        moneyRequest.currency = CurrencyEnum.INR.ToString();
-
-        PayerRequest payer = new PayerRequest();
-        payer.email = email;
+        moneyRequest.currency = CurrencyEnum.MXN.ToString();
 
         MerchantRequest merchantRequest = new MerchantRequest();
         merchantRequest.merchantId = merchantId;
+        ;
 
-        PayInRequest payInRequest = new PayInRequest();
-        payInRequest.merchant = merchantRequest;
-        payInRequest.money = moneyRequest;
-        payInRequest.paymentMethod = paymentMethod;
-        payInRequest.area = AreaEnum.INDIA.Code;
-        payInRequest.purpose = "for test";
-        payInRequest.payer = payer;
-        payInRequest.orderNo = orderNo.Substring(0, 32);
+        TradePayOutRequest payOutRequest = new TradePayOutRequest();
+        payOutRequest.cashAccount = cashAccount;
+        payOutRequest.merchant = merchantRequest;
+        payOutRequest.money = moneyRequest;
+        payOutRequest.paymentMethod = paymentMethod;
+        payOutRequest.area = AreaEnum.MEXICO.Code;
+        payOutRequest.purpose = "for test";
+        payOutRequest.orderNo = orderNo.Substring(0, 32);
 
-        Console.WriteLine("request path:" + requestPath);
-
-        // minifi data
-        string minify = Newtonsoft.Json.JsonConvert.SerializeObject(payInRequest);
+        // minify data 
+        string minify = Newtonsoft.Json.JsonConvert.SerializeObject(payOutRequest);
         Console.WriteLine("minify:" + minify);
 
         string signContent = $"{timestamp}|{merchantSecret}|{minify}";
+        Console.WriteLine("request path:" + requestPath);
 
         var signature = SignatureUtils.sha256RsaSignature(signContent, privateKey);
         using (HttpClient client = new HttpClient())
         {
-            // request headers
+            // request headers 
             client.DefaultRequestHeaders.Add("ContentType", "application/json");
             client.DefaultRequestHeaders.Add("X-TIMESTAMP", timestamp);
             client.DefaultRequestHeaders.Add("X-SIGNATURE", signature);
@@ -63,11 +57,11 @@ public class PayInRequestDemo
 
             Console.WriteLine("content:" + Newtonsoft.Json.JsonConvert.SerializeObject(content));
 
-            // post request 
+            // request post
             HttpResponseMessage response =
                 await client.PostAsync(requestPath, content);
 
-            //  is success code ?
+            // is success ?
             if (response.IsSuccessStatusCode)
             {
                 // read response body 

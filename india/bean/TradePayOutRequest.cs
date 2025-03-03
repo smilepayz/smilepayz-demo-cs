@@ -11,6 +11,7 @@ public class TradePayOutRequest
     public string paymentMethod { get ; set ; }
     
     public string callbackUrl { get; set; }
+    public string ifscCode { get; set; }
     
     public PayerRequest payer{ get; set; }
     public ReceiverRequest receiver{ get; set; }

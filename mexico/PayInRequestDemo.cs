@@ -1,14 +1,14 @@
 ﻿
 using System.Text;
 
-using india.bean;
-namespace india;
+using mexico.bean;
+namespace mexico;
 
 
 public class PayInRequestDemo
 {
     public static async Task PayInDemo(string env, string merchantId, string merchantSecret, string privateKey,
-        string paymentMethod, int amount, string email)
+        string paymentMethod, int amount )
     {
         // sandbox 
         string requestPath = Constant.baseUrlSanbox + "/v2.0/transaction/pay-in";
@@ -26,10 +26,7 @@ public class PayInRequestDemo
 
         MoneyRequest moneyRequest = new MoneyRequest();
         moneyRequest.amount = amount;
-        moneyRequest.currency = CurrencyEnum.INR.ToString();
-
-        PayerRequest payer = new PayerRequest();
-        payer.email = email;
+        moneyRequest.currency = CurrencyEnum.MXN.ToString();
 
         MerchantRequest merchantRequest = new MerchantRequest();
         merchantRequest.merchantId = merchantId;
@@ -38,9 +35,8 @@ public class PayInRequestDemo
         payInRequest.merchant = merchantRequest;
         payInRequest.money = moneyRequest;
         payInRequest.paymentMethod = paymentMethod;
-        payInRequest.area = AreaEnum.INDIA.Code;
+        payInRequest.area = AreaEnum.MEXICO.Code;
         payInRequest.purpose = "for test";
-        payInRequest.payer = payer;
         payInRequest.orderNo = orderNo.Substring(0, 32);
 
         Console.WriteLine("request path:" + requestPath);

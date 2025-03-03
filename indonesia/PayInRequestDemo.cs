@@ -1,14 +1,16 @@
-﻿
+﻿using System;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
-using india.bean;
-namespace india;
+using indonesia.bean;
+namespace indonesia;
 
 
 public class PayInRequestDemo
 {
     public static async Task PayInDemo(string env, string merchantId, string merchantSecret, string privateKey,
-        string paymentMethod, int amount, string email)
+        string paymentMethod, int amount, string ovoAccount)
     {
         // sandbox 
         string requestPath = Constant.baseUrlSanbox + "/v2.0/transaction/pay-in";
@@ -26,10 +28,10 @@ public class PayInRequestDemo
 
         MoneyRequest moneyRequest = new MoneyRequest();
         moneyRequest.amount = amount;
-        moneyRequest.currency = CurrencyEnum.INR.ToString();
+        moneyRequest.currency = CurrencyEnum.IDR.ToString();
 
         PayerRequest payer = new PayerRequest();
-        payer.email = email;
+        payer.phone = ovoAccount;
 
         MerchantRequest merchantRequest = new MerchantRequest();
         merchantRequest.merchantId = merchantId;
@@ -38,7 +40,7 @@ public class PayInRequestDemo
         payInRequest.merchant = merchantRequest;
         payInRequest.money = moneyRequest;
         payInRequest.paymentMethod = paymentMethod;
-        payInRequest.area = AreaEnum.INDIA.Code;
+        payInRequest.area = AreaEnum.INDONESIA.Code;
         payInRequest.purpose = "for test";
         payInRequest.payer = payer;
         payInRequest.orderNo = orderNo.Substring(0, 32);

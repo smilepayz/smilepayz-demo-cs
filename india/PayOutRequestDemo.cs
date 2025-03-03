@@ -1,15 +1,13 @@
-﻿using System;
-using System.Net.Http;
+﻿
 using System.Text;
-using System.Threading.Tasks;
-
 using india.bean;
+
 namespace india;
 
 public class PayOutRequestDemo
 {
     public static async Task PayOutDemo(string env, string merchantId, string merchantSecret, string privateKey,
-        string paymentMethod, string taxNumber, string cashAccount, int amount)
+        string paymentMethod, string ifscCode, string cashAccount, int amount)
     {
         // sandbox 
         string requestPath = Constant.baseUrlSanbox + "/v2.0/disbursement/pay-out";
@@ -18,9 +16,7 @@ public class PayOutRequestDemo
             requestPath = Constant.baseUrl + "/v2.0/disbursement/pay-out";
         }
 
-
         string orderNo = merchantId.Replace("sandbox-", "S") + Guid.NewGuid().ToString("N");
-
 
         DateTime date = DateTime.Now;
         string timestamp = date.ToString("yyyy-MM-dd'T'HH:mm:sszzz");
@@ -28,21 +24,19 @@ public class PayOutRequestDemo
 
         MoneyRequest moneyRequest = new MoneyRequest();
         moneyRequest.amount = amount;
-        moneyRequest.currency = CurrencyEnum.BRL.ToString();
+        moneyRequest.currency = CurrencyEnum.INR.ToString();
 
         MerchantRequest merchantRequest = new MerchantRequest();
         merchantRequest.merchantId = merchantId;
-
-        ReceiverRequest receiver = new ReceiverRequest();
-        receiver.taxNumber = taxNumber;
+        ;
 
         TradePayOutRequest payOutRequest = new TradePayOutRequest();
-        payOutRequest.receiver = receiver;
+        payOutRequest.ifscCode = ifscCode;
         payOutRequest.cashAccount = cashAccount;
         payOutRequest.merchant = merchantRequest;
         payOutRequest.money = moneyRequest;
         payOutRequest.paymentMethod = paymentMethod;
-        payOutRequest.area = AreaEnum.BRAZIL.Code;
+        payOutRequest.area = AreaEnum.INDIA.Code;
         payOutRequest.purpose = "for test";
         payOutRequest.orderNo = orderNo.Substring(0, 32);
 

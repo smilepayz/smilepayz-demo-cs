@@ -1,7 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using brazil;
-class BrazilProgram
+namespace thailand;
+
+class ThailandDemo
 {
     static async Task Main(string[] args)
     {
@@ -11,9 +12,13 @@ class BrazilProgram
         string privateKey = "";
         string paymentMethod = "";
         int amount = 100;
-        await PayInRequestDemo.PayInDemo(env, merchantId, merchantSecret, privateKey, paymentMethod, amount, "");
+        string payerName = "";
+        string payerAccount = "";
+        string payerBank = "";
+        await PayInRequestDemo.PayInDemo(env, merchantId, merchantSecret, privateKey, paymentMethod, amount,
+            payerAccount,payerBank,payerName);
         await BalanceInquiryDemo.InquiryDemo(env, merchantId, merchantSecret, privateKey, "");
         await OrderStatusInquiryDemo.InquiryDemo(env, merchantId, merchantSecret, privateKey, "", "", 1);
-        await PayOutRequestDemo.PayOutDemo(env, merchantId, merchantSecret, privateKey, paymentMethod, "", "", amount);
+        await PayOutRequestDemo.PayOutDemo(env, merchantId, merchantSecret, privateKey, paymentMethod, "", amount);
     }
 }
