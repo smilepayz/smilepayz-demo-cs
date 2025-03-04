@@ -2,7 +2,7 @@
 
 using india;
 
-class IndiaProgram
+class IndiaDemo
 {
     static async Task Main(string[] args)
     {
@@ -12,10 +12,12 @@ class IndiaProgram
         string privateKey = "";
         string paymentMethod = "";
         int amount = 100;
-        string email = "";
-        await PayInRequestDemo.PayInDemo(env, merchantId, merchantSecret, privateKey, paymentMethod, amount, email);
+        string ovoAccount = "";
+
         await BalanceInquiryDemo.InquiryDemo(env, merchantId, merchantSecret, privateKey, "");
         await OrderStatusInquiryDemo.InquiryDemo(env, merchantId, merchantSecret, privateKey, "", "", 1);
+        await PayInRequestDemo.PayInDemo(env, merchantId, merchantSecret, privateKey, paymentMethod, amount,
+            ovoAccount);
         await PayOutRequestDemo.PayOutDemo(env, merchantId, merchantSecret, privateKey, paymentMethod, "", "", amount);
     }
 }
