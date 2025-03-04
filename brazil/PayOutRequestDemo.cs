@@ -15,10 +15,8 @@ public class PayOutRequestDemo
         {
             requestPath = Constant.baseUrl + "/v2.0/disbursement/pay-out";
         }
-
-
+        
         string orderNo = merchantId.Replace("sandbox-", "S") + Guid.NewGuid().ToString("N");
-
 
         DateTime date = DateTime.Now;
         string timestamp = date.ToString("yyyy-MM-dd'T'HH:mm:sszzz");

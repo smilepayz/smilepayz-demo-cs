@@ -13,7 +13,6 @@ public class TradePayOutRequest
     public PayerRequest payer { get; set; }
     public ReceiverRequest receiver { get; set; }
 
-    public TradeAdditionalReq additionalParam { get; set; }
     public MoneyRequest money { get; set; }
     public MerchantRequest merchant { get; set; }
 }

@@ -12,12 +12,19 @@ class IndiaDemo
         string privateKey = "";
         string paymentMethod = "";
         int amount = 100;
-        string ovoAccount = "";
-
-        await BalanceInquiryDemo.InquiryDemo(env, merchantId, merchantSecret, privateKey, "");
-        await OrderStatusInquiryDemo.InquiryDemo(env, merchantId, merchantSecret, privateKey, "", "", 1);
+        string email = "";
+        string ifsCode = "";
+        string cashAccount = "";
+        string accountNo = "";
+        string tradeNo = "";
+        string orderNo = "";
+        int tradeType = 1;
+        await BalanceInquiryDemo.InquiryDemo(env, merchantId, merchantSecret, privateKey, accountNo);
+        await OrderStatusInquiryDemo.InquiryDemo(env, merchantId, merchantSecret, privateKey, tradeNo, orderNo,
+            tradeType);
         await PayInRequestDemo.PayInDemo(env, merchantId, merchantSecret, privateKey, paymentMethod, amount,
-            ovoAccount);
-        await PayOutRequestDemo.PayOutDemo(env, merchantId, merchantSecret, privateKey, paymentMethod, "", "", amount);
+            email);
+        await PayOutRequestDemo.PayOutDemo(env, merchantId, merchantSecret, privateKey, paymentMethod, ifsCode,
+            cashAccount, amount);
     }
 }

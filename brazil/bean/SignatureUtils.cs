@@ -66,7 +66,7 @@ public class SignatureUtils
         
         MoneyRequest moneyRequest = new MoneyRequest();
         moneyRequest.amount = 10000;
-        moneyRequest.currency = CurrencyEnum.IDR.ToString();
+        moneyRequest.currency = CurrencyEnum.BRL.ToString();
 
         MerchantRequest merchantRequest = new MerchantRequest();
         merchantRequest.merchantId = "20019";
@@ -75,7 +75,7 @@ public class SignatureUtils
         payInRequest.merchant = merchantRequest;
         payInRequest.money = moneyRequest;
         payInRequest.paymentMethod = "W_DANA";
-        payInRequest.area = AreaEnum.INDONESIA.Code;
+        payInRequest.area = AreaEnum.BRAZIL.Code;
         payInRequest.purpose = "for test";
 
         payInRequest.orderNo = Guid.NewGuid().ToString("N");

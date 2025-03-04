@@ -16,9 +16,13 @@ class BrazilApiDemo
         string pixAccount = "";
         string taxNumber = "";
         string cashAccount = "";
+        string accountNo = "";
+        string tradeNo = "";
+        string orderNo = "";
+        int tradeType = 1;
         await PayInRequestDemo.PayInDemo(env, merchantId, merchantSecret, privateKey, paymentMethod, amount, pixAccount);
-        await BalanceInquiryDemo.InquiryDemo(env, merchantId, merchantSecret, privateKey, "");
-        await OrderStatusInquiryDemo.InquiryDemo(env, merchantId, merchantSecret, privateKey, "", "", 1);
+        await BalanceInquiryDemo.InquiryDemo(env, merchantId, merchantSecret, privateKey, accountNo);
+        await OrderStatusInquiryDemo.InquiryDemo(env, merchantId, merchantSecret, privateKey, tradeNo, orderNo, tradeType);
         await PayOutRequestDemo.PayOutDemo(env, merchantId, merchantSecret, privateKey, paymentMethod, taxNumber, cashAccount, amount);
     }
 }

@@ -1,12 +1,10 @@
 ﻿namespace india.bean;
+
 using System;
+
 public class AreaEnum
 {
-    public static readonly AreaEnum INDONESIA = new AreaEnum(10, CurrencyEnum.IDR, 62);
-    public static readonly AreaEnum THAILAND = new AreaEnum(11, CurrencyEnum.THB, 66);
     public static readonly AreaEnum INDIA = new AreaEnum(12, CurrencyEnum.INR, 91);
-    public static readonly AreaEnum BRAZIL = new AreaEnum(13, CurrencyEnum.BRL, 55);
-    public static readonly AreaEnum MEXICO = new AreaEnum(14, CurrencyEnum.MXN, 52);
 
     public int Code { get; }
     public CurrencyEnum Currency { get; }
@@ -23,11 +21,7 @@ public class AreaEnum
     {
         switch (code)
         {
-            case 10: return INDONESIA;
-            case 11: return THAILAND;
             case 12: return INDIA;
-            case 13: return BRAZIL;
-            case 14: return MEXICO;
             default: throw new ArgumentException("Invalid code");
         }
     }
