@@ -5,7 +5,6 @@ public class TradePayOutRequest
     public string cashAccount { get; set; }
     public string orderNo { get; set; }
     public string purpose { get; set; }
-    public int area { get; set; }
     public string paymentMethod { get; set; }
 
     public string callbackUrl { get; set; }

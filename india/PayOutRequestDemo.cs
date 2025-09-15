@@ -36,7 +36,6 @@ public class PayOutRequestDemo
         payOutRequest.merchant = merchantRequest;
         payOutRequest.money = moneyRequest;
         payOutRequest.paymentMethod = paymentMethod;
-        payOutRequest.area = AreaEnum.INDIA.Code;
         payOutRequest.purpose = "for test";
         payOutRequest.orderNo = orderNo.Substring(0, 32);
 

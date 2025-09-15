@@ -36,7 +36,6 @@ public class PayInRequestDemo
         payInRequest.merchant = merchantRequest;
         payInRequest.money = moneyRequest;
         payInRequest.paymentMethod = paymentMethod;
-        payInRequest.area = AreaEnum.BRAZIL.Code;
         payInRequest.purpose = "for test";
         payInRequest.payer = payer;
         payInRequest.orderNo = orderNo.Substring(0, 32);

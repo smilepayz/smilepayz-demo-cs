@@ -3,6 +3,7 @@
 public class TradePayOutRequest
 {
     public string cashAccount { get; set; }
+    public string cashAccountType { get; set; }
     public string orderNo { get; set; }
     public string purpose { get; set; }
 

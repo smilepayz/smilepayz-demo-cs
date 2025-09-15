@@ -5,7 +5,7 @@ namespace vietanm;
 public class PayOutRequestDemo
 {
     public static async Task PayOutDemo(string env, string merchantId, string merchantSecret, string privateKey,
-        string paymentMethod, string cashAccount, int amount)
+        string paymentMethod, string cashAccount,string cashAccountType,string name,string phone,string email, int amount)
     {
         // sandbox 
         string requestPath = Constant.baseUrlSanbox + "/v2.0/disbursement/pay-out";
@@ -26,7 +26,11 @@ public class PayOutRequestDemo
 
         MerchantRequest merchantRequest = new MerchantRequest();
         merchantRequest.merchantId = merchantId;
-        ;
+        
+        ReceiverRequest receiver = new ReceiverRequest();
+        receiver.name = name;
+        receiver.phone = phone;
+        receiver.email = email;
 
         TradePayOutRequest payOutRequest = new TradePayOutRequest();
         payOutRequest.cashAccount = cashAccount;
@@ -35,7 +39,7 @@ public class PayOutRequestDemo
         payOutRequest.paymentMethod = paymentMethod;
         payOutRequest.purpose = "for test";
         payOutRequest.orderNo = orderNo.Substring(0, 32);
-
+        payOutRequest.cashAccountType =cashAccountType;
         // minify data 
         string minify = Newtonsoft.Json.JsonConvert.SerializeObject(payOutRequest);
         Console.WriteLine("minify:" + minify);
