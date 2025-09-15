@@ -1,7 +1,7 @@
 ﻿using System.Text;
-using thailand.bean;
+using vietanm.bean;
 
-namespace thailand;
+namespace vietanm;
 
 public class PayInRequestDemo
 {
@@ -24,7 +24,7 @@ public class PayInRequestDemo
 
         MoneyRequest moneyRequest = new MoneyRequest();
         moneyRequest.amount = amount;
-        moneyRequest.currency = CurrencyEnum.THB.ToString();
+        moneyRequest.currency = CurrencyEnum.VND.ToString();
 
         PayerRequest payer = new PayerRequest();
         payer.accountNo = payerAccount;

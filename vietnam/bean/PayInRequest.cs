@@ -1,10 +1,11 @@
-﻿namespace thailand.bean;
+﻿namespace vietanm.bean;
 
 public class PayInRequest
 {
 
     public string orderNo{ get ; set ; }
     public string purpose { get ; set ; }
+    public int area{ get ; set ; }
     public int expiryPeriod{ get ; set ; }
     public string paymentMethod { get ; set ; }
     public string callbackUrl{ get; set; }
