@@ -75,7 +75,6 @@ public class SignatureUtils
         payInRequest.merchant = merchantRequest;
         payInRequest.money = moneyRequest;
         payInRequest.paymentMethod = "P2P";
-        payInRequest.area = AreaEnum.INDIA.Code;
         payInRequest.purpose = "for test";
 
         payInRequest.orderNo = Guid.NewGuid().ToString("N");

@@ -75,7 +75,6 @@ public class SignatureUtils
         payInRequest.merchant = merchantRequest;
         payInRequest.money = moneyRequest;
         payInRequest.paymentMethod = "QRPAY";
-        payInRequest.area = AreaEnum.THAILAND.Code;
         payInRequest.purpose = "for test";
 
         payInRequest.orderNo = Guid.NewGuid().ToString("N");

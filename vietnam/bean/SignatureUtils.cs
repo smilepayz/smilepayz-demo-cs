@@ -66,7 +66,7 @@ public class SignatureUtils
         
         MoneyRequest moneyRequest = new MoneyRequest();
         moneyRequest.amount = 10000;
-        moneyRequest.currency = CurrencyEnum.THB.ToString();
+        moneyRequest.currency = CurrencyEnum.VND.ToString();
 
         MerchantRequest merchantRequest = new MerchantRequest();
         merchantRequest.merchantId = "20019";
@@ -75,7 +75,6 @@ public class SignatureUtils
         payInRequest.merchant = merchantRequest;
         payInRequest.money = moneyRequest;
         payInRequest.paymentMethod = "QRPAY";
-        payInRequest.area = AreaEnum.THAILAND.Code;
         payInRequest.purpose = "for test";
 
         payInRequest.orderNo = Guid.NewGuid().ToString("N");
