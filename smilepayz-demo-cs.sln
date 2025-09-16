@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "thailand", "thailand\thaila
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vietnam", "vietnam\vietnam.csproj", "{7E00BAFB-A6B9-40C6-A5C3-8471CE5FF859}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "philippines", "philippines\philippines.csproj", "{0E58D5C5-DFA8-49DF-AA9B-A1ADB07C5AAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{7E00BAFB-A6B9-40C6-A5C3-8471CE5FF859}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E00BAFB-A6B9-40C6-A5C3-8471CE5FF859}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E00BAFB-A6B9-40C6-A5C3-8471CE5FF859}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E58D5C5-DFA8-49DF-AA9B-A1ADB07C5AAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E58D5C5-DFA8-49DF-AA9B-A1ADB07C5AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E58D5C5-DFA8-49DF-AA9B-A1ADB07C5AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E58D5C5-DFA8-49DF-AA9B-A1ADB07C5AAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
