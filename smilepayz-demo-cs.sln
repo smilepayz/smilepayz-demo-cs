@@ -14,6 +14,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vietnam", "vietnam\vietnam.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "philippines", "philippines\philippines.csproj", "{0E58D5C5-DFA8-49DF-AA9B-A1ADB07C5AAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "colombia", "colombia\colombia.csproj", "{CDDB317F-4C22-41DE-96C0-A8E6D777D2FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "peru", "peru\peru.csproj", "{CDC10E52-1BA1-4B43-85E2-6C8444870859}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +52,13 @@ Global
 		{0E58D5C5-DFA8-49DF-AA9B-A1ADB07C5AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E58D5C5-DFA8-49DF-AA9B-A1ADB07C5AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E58D5C5-DFA8-49DF-AA9B-A1ADB07C5AAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDDB317F-4C22-41DE-96C0-A8E6D777D2FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDDB317F-4C22-41DE-96C0-A8E6D777D2FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDDB317F-4C22-41DE-96C0-A8E6D777D2FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDDB317F-4C22-41DE-96C0-A8E6D777D2FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDC10E52-1BA1-4B43-85E2-6C8444870859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC10E52-1BA1-4B43-85E2-6C8444870859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC10E52-1BA1-4B43-85E2-6C8444870859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC10E52-1BA1-4B43-85E2-6C8444870859}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
